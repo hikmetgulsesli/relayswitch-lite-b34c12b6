@@ -1,0 +1,94 @@
+[
+  {
+    "screenId": "2122bcd02238419eb3bb395e2a4612f0",
+    "title": "Gameplay - RelaySwitch Lite",
+    "componentName": "GameplayRelayswitchLite",
+    "file": "src/screens/GameplayRelayswitchLite.tsx",
+    "buttons": 1,
+    "inputs": 0,
+    "links": 0,
+    "actions": [
+      {
+        "id": "pause-1",
+        "kind": "button",
+        "label": "Pause",
+        "index": 0
+      }
+    ]
+  },
+  {
+    "screenId": "08954103147640439e6a6ffaafb9352b",
+    "title": "Game Settings - RelaySwitch Lite",
+    "componentName": "GameSettingsRelayswitchLite",
+    "file": "src/screens/GameSettingsRelayswitchLite.tsx",
+    "buttons": 6,
+    "inputs": 3,
+    "links": 4,
+    "actions": [
+      {
+        "id": "close-1",
+        "kind": "button",
+        "label": "Close",
+        "index": 0
+      },
+      {
+        "id": "casual-2",
+        "kind": "button",
+        "label": "Casual",
+        "index": 1
+      },
+      {
+        "id": "normal-3",
+        "kind": "button",
+        "label": "Normal",
+        "index": 2
+      },
+      {
+        "id": "overload-4",
+        "kind": "button",
+        "label": "Overload",
+        "index": 3
+      },
+      {
+        "id": "cancel-5",
+        "kind": "button",
+        "label": "Cancel",
+        "index": 4
+      },
+      {
+        "id": "apply-override-6",
+        "kind": "button",
+        "label": "Apply Override",
+        "index": 5
+      },
+      {
+        "id": "grid-os-1",
+        "kind": "link",
+        "label": "GRID_OS",
+        "href": "#",
+        "index": 0
+      },
+      {
+        "id": "power-stats-2",
+        "kind": "link",
+        "label": "POWER_STATS",
+        "href": "#",
+        "index": 1
+      },
+      {
+        "id": "overload-logs-3",
+        "kind": "link",
+        "label": "OVERLOAD_LOGS",
+        "href": "#",
+        "index": 2
+      },
+      {
+        "id": "system-cfg-4",
+        "kind": "link",
+        "label": "SYSTEM_CFG",
+        "href": "#",
+        "index": 3
+      }
+    ]
+  }
+]
