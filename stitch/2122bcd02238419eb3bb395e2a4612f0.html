@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RelaySwitch Lite - Gameplay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Sora:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#810081",
+                        "primary-container": "#00f3ff",
+                        "inverse-surface": "#e2e2e8",
+                        "tertiary-fixed": "#c3f400",
+                        "on-secondary": "#5b005b",
+                        "outline": "#849495",
+                        "on-secondary-container": "#500050",
+                        "secondary": "#ffabf3",
+                        "primary-fixed-dim": "#00dce6",
+                        "on-primary-container": "#006b71",
+                        "tertiary-container": "#bded00",
+                        "primary-fixed": "#6ff6ff",
+                        "inverse-on-surface": "#2f3035",
+                        "surface-container-lowest": "#0c0e12",
+                        "outline-variant": "#3a494b",
+                        "secondary-fixed-dim": "#ffabf3",
+                        "surface-variant": "#333539",
+                        "on-tertiary-fixed": "#161e00",
+                        "inverse-primary": "#00696f",
+                        "tertiary-fixed-dim": "#abd600",
+                        "surface-dim": "#111318",
+                        "surface-tint": "#00dce6",
+                        "on-error": "#690005",
+                        "secondary-fixed": "#ffd7f5",
+                        "background": "#111318",
+                        "surface-container-highest": "#333539",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#3c4d00",
+                        "on-surface-variant": "#b9cacb",
+                        "on-primary": "#00373a",
+                        "surface-container-low": "#1a1c20",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#fe00fe",
+                        "surface-container": "#1e2024",
+                        "surface-container-high": "#282a2e",
+                        "on-tertiary": "#283500",
+                        "on-tertiary-container": "#526800",
+                        "on-primary-fixed-variant": "#004f53",
+                        "tertiary": "#f1ffc2",
+                        "on-primary-fixed": "#002022",
+                        "on-background": "#e2e2e8",
+                        "primary": "#e3fdff",
+                        "on-surface": "#e2e2e8",
+                        "on-secondary-fixed": "#380038",
+                        "surface-bright": "#37393e",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#111318"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "path-width": "4px",
+                        "relay-size": "32px",
+                        "gutter": "8px",
+                        "grid-unit": "40px",
+                        "margin-edge": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Geist"],
+                        "data-label": ["JetBrains Mono"],
+                        "hud-display-lg": ["Sora"],
+                        "hazard-alert": ["Sora"],
+                        "hud-display-sm": ["Sora"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "data-label": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "hud-display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "hazard-alert": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.2em", "fontWeight": "800" }],
+                        "hud-display-sm": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0C10; /* The floor */
+            background-image: 
+                linear-gradient(to right, rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px; /* Grid units */
+            background-position: center center;
+            overflow: hidden;
+            touch-action: none; /* Prevent scroll on mobile game */
+        }
+
+        /* Bloom effects */
+        .bloom-primary { box-shadow: 0 0 12px rgba(0, 243, 255, 0.8); }
+        .bloom-secondary { box-shadow: 0 0 12px rgba(254, 0, 254, 0.8); }
+        .bloom-tertiary { box-shadow: 0 0 12px rgba(189, 237, 0, 0.8); }
+        .bloom-error { box-shadow: 0 0 12px rgba(255, 180, 171, 0.8); }
+
+        /* Isometric grid container */
+        .iso-grid-wrapper {
+            transform: rotateX(60deg) rotateZ(-45deg);
+            transform-style: preserve-3d;
+        }
+
+        /* Hazard cell animation */
+        @keyframes pulse-hazard {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.9; }
+        }
+        .hazard-pulse { animation: pulse-hazard 1s infinite ease-in-out; }
+
+        /* Energy packet animation */
+        @keyframes flow {
+            to { stroke-dashoffset: -20; }
+        }
+        .energy-flow {
+            stroke-dasharray: 10 10;
+            animation: flow 0.5s linear infinite;
+        }
+
+        /* Floating label animation */
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-30px); opacity: 0; }
+        }
+        .float-up {
+            animation: floatUp 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-on-background h-screen w-screen flex flex-col items-center justify-center relative">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-edge h-grid-unit bg-surface-container-low/80 backdrop-blur-md border-b-2 border-primary-container text-primary-container font-hud-display-sm text-hud-display-sm shadow-md shadow-primary-container/20">
+<div class="font-hud-display-lg text-hud-display-lg text-primary-fixed drop-shadow-[0_0_12px_rgba(0,243,255,0.8)]">
+            RELAY_SWITCH_LITE
+        </div>
+<!-- Top HUD for Desktop (hidden on md-down, visible on md-up) -->
+<div class="hidden md:flex gap-8 items-center font-data-label text-data-label text-secondary">
+<div class="flex items-center gap-2 bloom-secondary rounded p-1 bg-surface-dim"><span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span> SCORE: 004200</div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined">leaderboard</span> LEVEL: 04</div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined">favorite</span> LIVES: 03</div>
+</div>
+<button class="hover:bg-primary-container hover:text-on-primary-container transition-colors duration-75 active:scale-95 text-outline w-8 h-8 flex items-center justify-center rounded">
+<span class="material-symbols-outlined">pause</span>
+</button>
+</header>
+<!-- Main Playfield -->
+<main class="w-full max-w-4xl flex-grow flex items-center justify-center relative z-10 px-margin-edge pt-grid-unit pb-grid-unit">
+<!-- Isometric Grid Container -->
+<div class="relative w-[400px] h-[400px] iso-grid-wrapper bg-surface-lowest/50 border border-outline/20">
+<!-- SVG Energy Paths Layer -->
+<svg class="absolute inset-0 w-full h-full" style="z-index: 1;">
+<!-- Grid Lines (faint) -->
+<defs>
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 243, 255, 0.1)" stroke-width="1"></path>
+</pattern>
+</defs>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+<!-- Active Paths -->
+<path class="bloom-primary" d="M20,20 L180,20 L180,180 L380,180" fill="none" stroke="#00f3ff" stroke-width="4"></path>
+<path class="energy-flow" d="M20,20 L180,20 L180,180 L380,180" fill="none" stroke="#fff" stroke-width="2"></path>
+<path class="bloom-tertiary" d="M220,180 L220,380" fill="none" stroke="#bded00" stroke-width="4"></path>
+</svg>
+<!-- Relays and Junctions (HTML Elements positioned absolute on the grid) -->
+<!-- Grid is 10x10, each cell 40x40 -->
+<!-- Source Node -->
+<div class="absolute left-0 top-0 w-[40px] h-[40px] flex items-center justify-center z-10">
+<div class="w-relay-size h-relay-size bg-primary-container border-2 border-primary-fixed bloom-primary flex items-center justify-center">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+</div>
+<!-- Junction 1 -->
+<div class="absolute left-[160px] top-0 w-[40px] h-[40px] flex items-center justify-center z-10">
+<div class="w-4 h-4 bg-primary border-2 border-primary-fixed rotate-45 bloom-primary"></div>
+</div>
+<!-- Junction 2 -->
+<div class="absolute left-[160px] top-[160px] w-[40px] h-[40px] flex items-center justify-center z-10">
+<div class="w-4 h-4 bg-primary border-2 border-primary-fixed rotate-45 bloom-primary"></div>
+</div>
+<!-- Charge Boost Cell -->
+<div class="absolute left-[200px] top-[160px] w-[40px] h-[40px] flex items-center justify-center z-10">
+<div class="w-relay-size h-relay-size bg-tertiary-container border-2 border-tertiary-fixed bloom-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm">bolt</span>
+</div>
+</div>
+<!-- Overload Hazard Cell -->
+<div class="absolute left-[80px] top-[160px] w-[40px] h-[40px] flex items-center justify-center z-10 hazard-pulse">
+<div class="w-full h-full bg-[repeating-linear-gradient(45deg,transparent,transparent_5px,#ffb4ab_5px,#ffb4ab_10px)] border border-error bloom-error bg-opacity-20"></div>
+</div>
+<!-- Destination Node -->
+<div class="absolute left-[360px] top-[160px] w-[40px] h-[40px] flex items-center justify-center z-10">
+<div class="w-relay-size h-relay-size border border-primary-fixed flex items-center justify-center">
+<div class="w-2 h-2 bg-primary-fixed/50 rounded-full"></div>
+</div>
+</div>
+<!-- Floating Combo Text (example) -->
+<div class="absolute left-[220px] top-[140px] font-data-label text-data-label text-tertiary-fixed float-up z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(189,237,0,0.8)]">
+                +100 BOOST
+            </div>
+</div>
+</main>
+<!-- Keyboard Hints (Desktop only, subtle) -->
+<div class="hidden md:flex absolute bottom-margin-edge w-full justify-center gap-8 font-data-label text-data-label text-outline z-20">
+<span>[SPACE] to Pause</span>
+<span>[ARROWS] to Toggle Junctions</span>
+</div>
+<!-- BottomNavBar (Mobile Only HUD) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-edge h-grid-unit bg-surface-dim/80 backdrop-blur-md border-t-2 border-secondary-container shadow-[0_-4px_12px_rgba(254,0,254,0.2)]">
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container p-2 h-full min-w-[80px] bloom-secondary">
+<span class="material-symbols-outlined text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-data-label text-[10px] uppercase tracking-widest mt-1">SCORE: 004200</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary-fixed-dim p-2 h-full min-w-[80px]">
+<span class="material-symbols-outlined text-sm">leaderboard</span>
+<span class="font-data-label text-[10px] uppercase tracking-widest mt-1">LEVEL: 04</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary-fixed-dim p-2 h-full min-w-[80px]">
+<span class="material-symbols-outlined text-sm">favorite</span>
+<span class="font-data-label text-[10px] uppercase tracking-widest mt-1">LIVES: 03</span>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on this screen, standard rule, but included for structure if needed later, set to hidden here as per 'prioritize playfield') -->
+<!-- Usually suppressed on a pure gameplay screen, keeping canvas clean -->
+</body></html>

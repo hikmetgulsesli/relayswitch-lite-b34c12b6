@@ -1,0 +1,20 @@
+[
+  {
+    "screenId": "2122bcd02238419eb3bb395e2a4612f0",
+    "name": "Gameplay - RelaySwitch Lite",
+    "type": "game",
+    "description": "Gameplay - RelaySwitch Lite screen",
+    "surfaceIds": [
+      "SURF_GAMEPLAY"
+    ]
+  },
+  {
+    "screenId": "08954103147640439e6a6ffaafb9352b",
+    "name": "Game Settings - RelaySwitch Lite",
+    "type": "settings",
+    "description": "Game Settings - RelaySwitch Lite screen",
+    "surfaceIds": [
+      "SURF_GAME_SETTINGS"
+    ]
+  }
+]

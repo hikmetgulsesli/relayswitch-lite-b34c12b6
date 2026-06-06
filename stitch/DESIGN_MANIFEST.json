@@ -1,0 +1,24 @@
+[
+  {
+    "screenId": "2122bcd02238419eb3bb395e2a4612f0",
+    "title": "Gameplay - RelaySwitch Lite",
+    "htmlFile": "2122bcd02238419eb3bb395e2a4612f0.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2ZjODA5MWJlMmM5OTQxYzNhMjAxMGVhNmUyNjA1MWU3EgsSBxCN19Wi9xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxMzkwNzE1MjA3NjIwODU5Mjg5NA&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/relayswitch-lite-b34c12b6/stitch/2122bcd02238419eb3bb395e2a4612f0.html",
+    "surfaceIds": [
+      "SURF_GAMEPLAY"
+    ]
+  },
+  {
+    "screenId": "08954103147640439e6a6ffaafb9352b",
+    "title": "Game Settings - RelaySwitch Lite",
+    "htmlFile": "08954103147640439e6a6ffaafb9352b.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2I3ZTQ5OGViNmI5NDQ2MmU4OGE1ZWQwZTBlZDRmOGQ3EgsSBxCN19Wi9xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxMzkwNzE1MjA3NjIwODU5Mjg5NA&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/relayswitch-lite-b34c12b6/stitch/08954103147640439e6a6ffaafb9352b.html",
+    "surfaceIds": [
+      "SURF_GAME_SETTINGS"
+    ]
+  }
+]
