@@ -1,0 +1,188 @@
+[
+  {
+    "screenId": "2122bcd02238419eb3bb395e2a4612f0",
+    "screenTitle": "Gameplay - RelaySwitch Lite",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "button",
+        "label": "pause",
+        "line": 158
+      }
+    ],
+    "navigation": [],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "pause",
+        "line": 158
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 1,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "08954103147640439e6a6ffaafb9352b",
+    "screenTitle": "Game Settings - RelaySwitch Lite",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "GRID_OS",
+        "href": "#",
+        "line": 138
+      },
+      {
+        "type": "link",
+        "label": "POWER_STATS",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "OVERLOAD_LOGS",
+        "href": "#",
+        "line": 150
+      },
+      {
+        "type": "link",
+        "label": "SYSTEM_CFG",
+        "href": "#",
+        "line": 156
+      },
+      {
+        "type": "button",
+        "label": "close",
+        "line": 171
+      },
+      {
+        "type": "button",
+        "label": "Casual",
+        "line": 195
+      },
+      {
+        "type": "button",
+        "label": "Normal",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "Overload",
+        "line": 197
+      },
+      {
+        "type": "button",
+        "label": "Cancel",
+        "line": 249
+      },
+      {
+        "type": "button",
+        "label": "Apply Override",
+        "line": 252
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 186
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 215
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 222
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "GRID_OS",
+        "href": "#",
+        "line": 138
+      },
+      {
+        "type": "link",
+        "label": "POWER_STATS",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "OVERLOAD_LOGS",
+        "href": "#",
+        "line": 150
+      },
+      {
+        "type": "link",
+        "label": "SYSTEM_CFG",
+        "href": "#",
+        "line": 156
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "close",
+        "line": 171
+      },
+      {
+        "type": "button",
+        "label": "Casual",
+        "line": 195
+      },
+      {
+        "type": "button",
+        "label": "Normal",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "Overload",
+        "line": 197
+      },
+      {
+        "type": "button",
+        "label": "Cancel",
+        "line": 249
+      },
+      {
+        "type": "button",
+        "label": "Apply Override",
+        "line": 252
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 186
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 215
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 222
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 13,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  }
+]
