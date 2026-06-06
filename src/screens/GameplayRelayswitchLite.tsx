@@ -19,7 +19,13 @@ export interface GameplayRelayswitchLiteProps {
 }
 
 export function GameplayRelayswitchLite({ actions, runtime }: GameplayRelayswitchLiteProps) {
-  void runtime;
+  const score = runtime?.score ?? 0;
+  const lives = runtime?.lives ?? 3;
+  const energy = runtime?.energy ?? 100;
+  const level = Math.floor((score / 1000)) + 1;
+  const scoreStr = score.toString().padStart(6, '0');
+  const livesStr = lives.toString().padStart(2, '0');
+  const levelStr = level.toString().padStart(2, '0');
   return (
     <>
       {/* TopAppBar */}
@@ -29,9 +35,9 @@ export function GameplayRelayswitchLite({ actions, runtime }: GameplayRelayswitc
               </div>
       {/* Top HUD for Desktop (hidden on md-down, visible on md-up) */}
       <div className="hidden md:flex gap-8 items-center font-data-label text-data-label text-secondary">
-      <div className="flex items-center gap-2 bloom-secondary rounded p-1 bg-surface-dim"><Sparkles  data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}} aria-hidden={true} focusable="false" /> SCORE: 004200</div>
-      <div className="flex items-center gap-2"><Trophy aria-hidden={true} focusable="false" /> LEVEL: 04</div>
-      <div className="flex items-center gap-2"><Heart aria-hidden={true} focusable="false" /> LIVES: 03</div>
+      <div className="flex items-center gap-2 bloom-secondary rounded p-1 bg-surface-dim"><Sparkles  data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}} aria-hidden={true} focusable="false" /> SCORE: {scoreStr}</div>
+      <div className="flex items-center gap-2"><Trophy aria-hidden={true} focusable="false" /> LEVEL: {levelStr}</div>
+      <div className="flex items-center gap-2"><Heart aria-hidden={true} focusable="false" /> LIVES: {livesStr}</div>
       </div>
       <button className="hover:bg-primary-container hover:text-on-primary-container transition-colors duration-75 active:scale-95 text-outline w-8 h-8 flex items-center justify-center rounded" type="button" aria-label="Pause" data-action-id="pause-1" onClick={actions?.["pause-1"]}>
       <Pause aria-hidden={true} focusable="false" />
@@ -102,15 +108,15 @@ export function GameplayRelayswitchLite({ actions, runtime }: GameplayRelayswitc
       <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-edge h-grid-unit bg-surface-dim/80 backdrop-blur-md border-t-2 border-secondary-container shadow-[0_-4px_12px_rgba(254,0,254,0.2)]">
       <div className="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container p-2 h-full min-w-[80px] bloom-secondary">
       <Sparkles  data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}} className="text-sm" aria-hidden={true} focusable="false" />
-      <span className="font-data-label text-[10px] uppercase tracking-widest mt-1">SCORE: 004200</span>
+      <span className="font-data-label text-[10px] uppercase tracking-widest mt-1">SCORE: {scoreStr}</span>
       </div>
       <div className="flex flex-col items-center justify-center text-secondary-fixed-dim p-2 h-full min-w-[80px]">
       <Trophy className="text-sm" aria-hidden={true} focusable="false" />
-      <span className="font-data-label text-[10px] uppercase tracking-widest mt-1">LEVEL: 04</span>
+      <span className="font-data-label text-[10px] uppercase tracking-widest mt-1">LEVEL: {levelStr}</span>
       </div>
       <div className="flex flex-col items-center justify-center text-secondary-fixed-dim p-2 h-full min-w-[80px]">
       <Heart className="text-sm" aria-hidden={true} focusable="false" />
-      <span className="font-data-label text-[10px] uppercase tracking-widest mt-1">LIVES: 03</span>
+      <span className="font-data-label text-[10px] uppercase tracking-widest mt-1">LIVES: {livesStr}</span>
       </div>
       </nav>
       {/* SideNavBar (Hidden on this screen, standard rule, but included for structure if needed later, set to hidden here as per 'prioritize playfield') */}
